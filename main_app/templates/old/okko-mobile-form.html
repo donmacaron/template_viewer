@@ -1,0 +1,54 @@
+{% extends "old/base/okko-mobile-base.html" %}
+{% load static %}
+
+{% block title %}{% if is_testing %}[ТЕСТ] {% endif %}Оплата покупки{% endblock %}
+
+{% block core %}
+{% if invoice_form.errors %}
+    {# TODO: отобразить сообщение об ошибке  #}
+    <!-- {{ invoice_form.errors }} -->
+{% else %}
+	<form role="form" method="post" action="{{ request.path }}">
+		{{ invoice_form.as_p }}
+        {% csrf_token %}
+		<div class="row clearfix">
+		  <!--Hereinafter type='tel' instead of 'number' because of issue: https://code.google.com/p/android/issues/detail?id=24626-->
+		  <input name="PAN" id="PAN" value="{{ payment_form.PAN.value|default:'' }}" type="tel" placeholder="Номер карты" onkeyup="validateCardNumber(this);" class="full" />
+		  {% if payment_form.errors.PAN %}
+              {{ payment_form.errors.PAN }}
+          {% endif %}
+		</div>
+		<div class="row clearfix">
+		  <div class="input_wrapper date">
+			<input name="month" id="month" value="{{ payment_form.month.value|default:'' }}"  type="tel" placeholder="ММ" onkeyup="validateMonth(this);" /> / <input name="year" id="year" value="{{ payment_form.year.value|default:'' }}" type="tel" onkeyup="validateYear(this);" placeholder="ГГ" />
+			<p id="dateHint" class="info">Срок действия карты</p>
+			{% if payment_form.errors.month %}
+               {{ payment_form.errors.month }}
+            {% elif payment_form.errors.year %}
+               {{ payment_form.errors.year }}
+            {% endif %}
+		  </div>
+		  <div class="input_wrapper cvv">
+			<input name="CVV" id="CVV" value="{{ payment_form.CVV.value|default:'' }}" type="tel" placeholder="CVV"  onkeyup="validateCVV(this);" /><span class="ico_cvv"><img src="{% static 'mobile/images/ico-card.png' %}" height="27px"></span>
+		    {% if payment_form.errors.CVV %}
+               {{ payment_form.errors.CVV }}
+            {% endif %}
+		  </div>
+		</div>
+		<button type="submit">Оплатить</button>
+  </form>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+
+  <script>
+	(function() {
+	   var dateError = document.querySelector(".date .errorlist");
+	   if(dateError){
+		  document.getElementById('dateHint').style.display='none';
+	   }
+	})();
+  </script>
+
+{% endblock %}

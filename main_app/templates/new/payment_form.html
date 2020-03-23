@@ -1,0 +1,51 @@
+{% extends "new/base/base.html" %}
+{% load static %}
+{% block card %}
+<div class="container3">
+  <div class="credit-card">
+    <form>
+      <div class="front-card">
+        <div class="card-info">
+          <p><input class="card-fields" type="text" placeholder="Номер карты" maxlength="16" required></p>
+            <div class="row">
+              <div class="col">
+                <img class="card-img" src="{% static "img/Visa.png" %}" alt="" width="50">
+                <img class="card-img" src="{% static "img/MasterCard.png" %}" alt="">
+                <div class="card-date-right">
+                  <input class="text-center card-date" type="text" placeholder="ММ" maxlength="2" size="4" required>
+                  <div class="card-slash">
+                    /
+                  </div>
+                  <input class="text-center card-date" type="text" placeholder="ГГ" maxlength="2" size="4" required>
+                </div>
+              </div>
+            </div>
+            <p><input class="card-fields" type="text" placeholder="Владелец" maxlength="255" required></p>
+        </div>
+        <div class="cvv-container">
+          <input class="card-cvv" type="text" placeholder="CVC / CVV" maxlength="3" required>
+        </div>
+      </div>
+      <div class="nice-button-container">
+        <strong>
+          к оплате [amount] рублей
+        </strong>
+        <p><input class="nice-button" type="submit" name="" value="Оплатить"></p>
+      </div>
+    </form>
+    <div class="card-background">
+      <div class="card-stripe">
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+<!--
+Увеличить шрифт
+Увеличить инпут тайп тексты
+Сделать красивые ховеры над инпутами
+Красивую большую кнопку
+Сделать фторую карточку
+Она на фоне
+и там СиВиВи тусить
+ -->

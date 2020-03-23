@@ -1,0 +1,14 @@
+{% extends "old/base/okko-desktop2-base.html" %}
+
+{% block title %}Платёж зачислен!{% endblock %}
+
+{% block core %}
+<h3>
+  Ваша операция успешно обработана.
+  {% if transaction.fingerprint.client_email %}
+  <br>
+  Информация о прошедшей операции была выслана<br>
+  на ваш электронный адрес
+  {% endif %}
+</h3>
+{% endblock %}

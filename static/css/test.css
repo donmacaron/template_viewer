@@ -1,0 +1,146 @@
+p {
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+input[type=text]:focus {
+  border: 2px solid #b8e7b1;
+}
+
+input[type=text] {
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  margin: 8px 0;
+  box-sizing: border-box;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input.placeholder {
+  text-transform: capitalize;
+
+}
+
+
+.credit-card {
+  width: 550px;
+  position: absolute;
+}
+
+.front-card {
+  width: 500px;
+  z-index: 1;
+}
+
+.card-info {
+  border-radius: 25px;
+  border: 2px solid #d8dfe5;
+  padding: 10px 20px 10px 20px;
+  background-color: #d7ecff;
+  justify-content: center;
+  width: 500px;
+}
+
+.card-fields {
+  width:100%;
+  font-size: 25px;
+  justify-content: center;
+  text-transform: uppercase;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.card-img {
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-right: 25px;
+  width: auto;
+  height: auto;
+}
+
+.card-date {
+  display: inline-block;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 75px;
+  font-size: 25px;
+}
+
+.card-slash {
+  display: inline-block;
+  font-size: 25px;
+  color: white;
+  padding-top: 5%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.card-date-right {
+  display: inline-block;
+  margin-left: 35px;
+}
+
+.cvv-container {
+  /* margin-top: 285px; */
+  text-align: right;
+}
+
+.card-cvv {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 150px;
+  font-size: 25px;
+}
+
+.nice-button-container {
+  font-size: 25px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 25px;
+  width: auto;
+}
+
+.nice-button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  width: 100%;
+}
+.nice-button:hover {
+  background-color: #3e8e41;
+}
+
+.nice-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.card-background {
+  top: 80px;
+  left: 50px;
+  position: absolute;
+  border-radius: 25px;
+  border: 2px solid #d8dfe5;
+  background-color: #bde0ff;
+  height: 295px;
+  width: 500px;
+  z-index: -1;
+  /* margin-left: 55px;
+  margin-top: 90px; */
+}
+
+.card-stripe {
+  margin-top: 30px;
+  margin-bottom: 100px;
+  background-color: black;
+  height: 75px;
+}

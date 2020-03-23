@@ -1,0 +1,46 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 2782552, 2014-03-27T03:57:05-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Futura PT Medium by ParaType
+ * URL: http://www.myfonts.com/fonts/paratype/futura-book/futura-medium/
+ * 
+ * Webfont: Futura PT Demi by ParaType
+ * URL: http://www.myfonts.com/fonts/paratype/futura-book/futura-demi/
+ * 
+ * Webfont: Futura PT Bold by ParaType
+ * URL: http://www.myfonts.com/fonts/paratype/futura-book/bold/
+ * 
+ * Webfont: Futura PT Heavy by ParaType
+ * URL: http://www.myfonts.com/fonts/paratype/futura-book/heavy/
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2782552
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright &#x00A9; 1995 ParaGraph Intl., &#x00A9; 1998 ParaType Inc., ParaType Ltd. All rights reserved.
+ * 
+ * © 2014 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2a7558");
+
+  
+@font-face {font-family: 'FuturaPT-Medium';src: url('webfonts/2A7558_0_0.eot');src: url('webfonts/2A7558_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2A7558_0_0.woff') format('woff'),url('webfonts/2A7558_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FuturaPT-Demi';src: url('webfonts/2A7558_1_0.eot');src: url('webfonts/2A7558_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2A7558_1_0.woff') format('woff'),url('webfonts/2A7558_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FuturaPT-Bold';src: url('webfonts/2A7558_2_0.eot');src: url('webfonts/2A7558_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2A7558_2_0.woff') format('woff'),url('webfonts/2A7558_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FuturaPT-Heavy';src: url('webfonts/2A7558_3_0.eot');src: url('webfonts/2A7558_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2A7558_3_0.woff') format('woff'),url('webfonts/2A7558_3_0.ttf') format('truetype');}
+ 

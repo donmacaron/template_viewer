@@ -1,0 +1,314 @@
+@font-face {
+	font-family: "futurabook";
+	src: url("../fonts/futurabook.otf") format("opentype");
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	overflow: hidden;
+	background: #f0f0f0;
+	font-size: 24px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	color: #000;
+}
+
+body.medium {
+	font-size: 18px;
+}
+
+*{
+	font-family: "futurabook", sans-serif;
+	letter-spacing: 0;
+}
+
+
+.bold, b {
+	font-weight: bold;
+}
+
+.tip{
+	color: #a8a8a8;
+}
+
+.error {
+	color: #ff0000;
+	white-space: normal;
+	margin-right: 10px;
+}
+
+.title{
+	font-weight: normal;
+	text-align: center;
+	font-size: 36px;
+	line-height: 42px;
+	margin-top: 0.2em;
+}
+
+body.medium .title {
+	font-size: 28px;
+}
+
+.hide{
+	display: none;
+}
+
+.nobr {
+	white-space:nowrap; 
+}
+
+.notes{
+	font-size: 22px;
+	color: #aaa;
+	clear: both;
+}
+
+body.medium .notes{
+	font-size: 18px;
+}
+
+.errorlist {
+    padding: 0;
+    margin: 0;
+    color: red;
+    list-style: none;
+    line-height: 47px;
+	text-indent: 15px;
+}
+
+.expiration-date .errorlist {
+	width: 50%;
+	float: left;
+	text-indent: 0;
+}
+
+.field, .field-group, .message {
+	margin: 1% 0;
+	padding: 2%;
+	background: #fff;
+	clear: both;
+	overflow: auto;
+}
+
+.field-group>.field {
+	margin: 0;
+	padding: 0;
+	width: 48%;
+	float: left;
+	clear: none;
+	display: inline-block;
+	overflow-y: hidden;
+}
+
+.expiration-date, .cvv {
+	width: 45%;
+	display: inline-block;
+	overflow-y: hidden;
+}
+
+.large.android .expiration-date, 
+.large.android .cvv {
+	width: 560px;
+}
+
+.medium.android .expiration-date, 
+.medium.android .cvv {
+	width: 418px;
+}
+
+.cvv {
+	float: right;	
+}
+
+.label, .tip {
+	line-height: 46px;
+}
+
+body.medium .label, body.medium .tip {
+	line-height: 36px;
+	font-size: 18px;
+}
+
+.tip {
+	margin-left: 0.5em;
+	float: left;
+}
+
+.cards {
+	float: right;
+}
+
+.fail {
+	background: #fff url(../i/error.png) no-repeat 3% center;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.success {
+	width: 100%;
+}
+
+.success td {
+	text-align: right;
+}
+
+.success th {
+	text-align: left;
+}
+
+.number_input {
+	margin:0 auto;
+	}
+
+.number_input.small {
+	margin:0 auto;
+	}
+
+	.number_input .input_place{
+		display:inline-block;
+		float:left;
+		height:100%;
+		box-sizing:border-box;
+		border:1px solid #999999;
+		background: #ffffff;
+		text-align:center;
+		margin-left:-1px;
+        color: #333333;
+		}
+
+    .number_input.error .input_place, .number_input.error .number_input_text {
+        border: 1px solid #ff0000;
+    }
+
+    .number_input.focus  .input_place{
+        border-color: #00aeef;
+    }
+
+	.number_input .input_place.highlighted{
+        color: #ffffff;
+        background: #00aeef;
+		}
+
+
+
+	.number_input .input_place.first, .number_input .input_place.prefix{
+		border-right:none;
+		margin-left:0;
+		}
+
+
+    .number_input .number_input_text {
+        float:left;
+        color:#333;
+        border: 1px solid #999999;
+        background: #ffffff;
+    }
+
+    .number_input.focus .number_input_text {
+        border-color: #00aeef;
+    }
+
+
+
+    .number_input_help .red_button {
+        background:url(../i/default/number-input/red-button.png) no-repeat center right;
+        vertical-align:middle;
+        color:#666;
+        display:inline-block;
+        min-height:17px;
+		font-size: 20px;
+        }
+
+.numpad {
+	display:block;
+	border-radius:2px;
+	background:#e5e5e5;
+	z-index:255;
+	}
+
+.number_input.numpad_fixed .numpad,
+.number_input.numpad_fixed_right .numpad {
+	position:fixed;
+	}
+
+	.numpad .numpad_row {
+		height:24.2%;
+		}
+
+		.numpad .numpad_button {
+			display:inline-block;
+			float:left;
+			width:32.4%;
+			height:100%;
+			border-top:1px solid #b7b7b7;
+			border-right:1px solid #b7b7b7;
+			border-bottom:1px solid #f2f2f2;
+			border-left:1px solid #f2f2f2;
+			color:#333;
+			text-align:center;
+			}
+
+			.numpad .numpad_button.focus {
+				background-color:#00aeef;
+				border-color:#00aeef;
+				color:#fff;
+				}
+
+			.numpad .numpad_button.button_1 {
+				border-top:none;
+				border-left:none;
+                width:32.8%;
+				}
+
+			.numpad .numpad_button.button_2 {
+				border-top:none;
+				}
+
+			.numpad .numpad_button.button_3 {
+				border-top:none;
+				border-right:none;
+				}
+
+			.numpad .numpad_button.button_4,
+			.numpad .numpad_button.button_7 {
+                width:32.8%;
+				border-left:none;
+				}
+
+			.numpad .numpad_button.button_6,
+			.numpad .numpad_button.button_9 {
+				border-right:none;
+				}
+
+			.numpad .numpad_button.button_backspace {
+                width:32.8%;
+				border-bottom:none;
+				border-left:none;
+				}
+
+			.numpad .numpad_button.button_0 {
+				border-bottom:none;
+				}
+
+			.numpad .numpad_button.button_close {
+				border-bottom:none;
+				border-right:none;
+				}
+
+			.numpad .numpad_button.button_close,
+			.numpad .numpad_button.button_backspace {
+				background:url(../i/default/number-input/buttons-samsung.png) 0 0 no-repeat;
+				}
+			.numpad .numpad_button.button_close {
+				background-position:100% 0;
+				}
+			.numpad .numpad_button.button_close.focus {
+				background-color:#00aeef;
+				background-position:100% 100%;
+				}
+			.numpad .numpad_button.button_backspace.focus {
+				background-color:#00aeef;
+				background-position:0 100%;
+				}

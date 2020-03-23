@@ -1,0 +1,279 @@
+{% extends "old/base/okko-tv-base.html" %}
+{% load static %}
+
+{% block title %}{% if is_testing %}[ТЕСТ] {% endif %}Оплата покупки{% endblock %}
+
+{% block body %}
+{% if invoice_form.errors %}
+    {# TODO: отобразить сообщение об ошибке  #}
+    <!-- {{ invoice_form.errors }} -->
+{% else %}
+    <div class="title bold">
+        Введите данные карты
+    </div>
+    <div class="card-form">
+        <div class="field pan">
+            <div class="label">
+                Номер карты:
+            </div>
+            <div id="card-number-input-wrapper">
+            </div>
+            {% if payment_form.errors.PAN %}
+                {{ payment_form.errors.PAN }}
+            {% endif %}
+        </div>
+        <div class="field-group expiration-date">
+            <div class="label">
+                Срок действия до:&nbsp;
+            </div>
+            <div class="field expiration-month">
+                <div id="card-expiration-month-input-wrapper"></div>
+                <div class="tip">Месяц</div>
+            </div>
+            <div class="field expiration-year">
+                <div id="card-expiration-year-input-wrapper"></div>
+                <div class="tip">Год</div>
+            </div>
+            {% if payment_form.errors.month %}
+                {{ payment_form.errors.month }}
+            {% endif %}
+            {% if payment_form.errors.year %}
+                {{ payment_form.errors.year }}
+            {% endif %}
+        </div>
+        <div class="field cvv">
+            <div class="label">
+                Код CVV (на обратной стороне карты):
+            </div>
+            <div id="card-cvv-input-wrapper"></div>
+            {% if payment_form.errors.CVV %}
+                {{ payment_form.errors.CVV }}
+            {% endif %}
+        </div>
+    </div>
+    <form method="post" action="{{ request.is_secure|yesno:'https,http' }}://{{ request.get_host }}{{ request.path }}" enctype="application/x-www-form-urlencoded" autocomplete="off" style="visibility: hidden; height: 0">
+        {{ invoice_form.as_p }}
+        {% csrf_token %}
+        <input name="PAN" id="PAN" value="{{ payment_form.PAN.value|default:'' }}" type="hidden">
+        <input name="month" id="month" value="{{ payment_form.month.value|default:'' }}" type="hidden">
+        <input name="year" id="year" value="{{ payment_form.year.value|default:'' }}" type="hidden">
+        <input name="CVV" id="CVV" value="{{ payment_form.CVV.value|default:'' }}" type="hidden">
+        <input type="submit" id="paymentFormSubmit"/>
+    </form>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        (function(){
+        Platform.onMessage = messageHandler;
+        window.onkeydown = keyDown;
+
+        var cardCvvInput,
+            cardExpirationYearInput,
+            cardExpirationMonthInput,
+            cardNumberInput;
+
+        var lastFocusedElement,
+            hasFocus = false;
+
+        $(document).ready(function load() {
+            Platform.log('[c] loaded');
+            Platform.postMessage(['loaded'],'*');
+
+            setFocus();
+            hasFocus = true;
+
+            Platform.appendStyle(STATIC_URL + 'tv/css/number-input-' + Platform.screenSize + '.css');
+
+            cardCvvInput = new Widgets.NumberInput({
+                initialValue: $('#CVV').val(),
+                length: 3,
+                type: 'formatted',
+                numpadEnabled: Platform.hasNoPhysicalNumberKeys,
+                copyValueToInput: 'CVV',
+                cssClass: 'small numpad_fixed_right'
+            }, stage);
+
+            cardExpirationYearInput = new Widgets.NumberInput({
+                initialValue: $('#year').val(),
+                length: 2,
+                type: 'formatted',
+                numpadEnabled: Platform.hasNoPhysicalNumberKeys,
+                copyValueToInput: 'year',
+                cssClass: 'small numpad_fixed_right',
+                onInputComplete: function(value) {
+                    stage.setFocus(cardCvvInput.element.id);
+                }
+            }, stage);
+
+            cardExpirationMonthInput = new Widgets.NumberInput({
+                initialValue: $('#month').val(),
+                length: 2,
+                type: 'formatted',
+                numpadEnabled: Platform.hasNoPhysicalNumberKeys,
+                copyValueToInput: 'month',
+                cssClass: 'small numpad_fixed_right',
+                onInputComplete: function(value) {
+                    stage.setFocus(cardExpirationYearInput.element.id);
+                },
+                valueRegexp: /^(0[1-9]?|1[012]?)$/
+            }, stage);
+
+            cardNumberInput = new Widgets.NumberInput({
+                initialValue: $('#PAN').val(),
+                length: 16,
+                type: 'formatted',
+                spaces: [3,7,11],
+                numpadEnabled: Platform.hasNoPhysicalNumberKeys,
+                copyValueToInput: 'PAN',
+                cssClass: 'small numpad_fixed_right'
+            },stage);
+
+            document.getElementById('card-number-input-wrapper').appendChild(cardNumberInput.element);
+            document.getElementById('card-expiration-month-input-wrapper').appendChild(cardExpirationMonthInput.element);
+            document.getElementById('card-expiration-year-input-wrapper').appendChild(cardExpirationYearInput.element);
+            document.getElementById('card-cvv-input-wrapper').appendChild(cardCvvInput.element);
+
+            stage.stageAdd({
+                id: 'leavePage',
+                focus: function() {
+
+                    if ( !hasFocus ) {
+                        stage.setFocus(lastFocusedElement);
+                        hasFocus = true;
+                        return;
+                    }
+
+                    lastFocusedElement = cardCvvInput.element.id;
+                    if ( stage.prev && stage.prev.id ){
+                        if ( stage.prev.numberInput) {
+                            lastFocusedElement = stage.prev.numberInput.element.id;
+                        } else {
+                            lastFocusedElement = stage.prev.id;
+                        }
+                    }
+                    hasFocus = false;
+                    leavePage();
+                }
+            });
+
+            cardExpirationMonthInput.link(Pages.StageMixin.DIRECTION.UP, cardNumberInput.element.id);
+            cardNumberInput.link(Pages.StageMixin.DIRECTION.DOWN, cardExpirationMonthInput.element.id);
+            cardExpirationMonthInput.link(Pages.StageMixin.DIRECTION.RIGHT, cardExpirationYearInput.element.id);
+            cardExpirationYearInput.link(Pages.StageMixin.DIRECTION.LEFT, cardExpirationMonthInput.element.id);
+            cardExpirationYearInput.link(Pages.StageMixin.DIRECTION.RIGHT, cardCvvInput.element.id);
+            cardCvvInput.link(Pages.StageMixin.DIRECTION.LEFT, cardExpirationYearInput.element.id);
+
+            cardExpirationMonthInput.link(Pages.StageMixin.DIRECTION.DOWN, 'leavePage');
+            cardExpirationYearInput.link(Pages.StageMixin.DIRECTION.DOWN, 'leavePage');
+            cardCvvInput.link(Pages.StageMixin.DIRECTION.DOWN, 'leavePage');
+
+            stage.setFocus(cardNumberInput.element.id);
+
+            stage.initStageEvents(stage, document.body);
+
+            var errors = $('.errorlist');
+            if ( errors.length > 0 ) {
+                Platform.postMessage(['validationError'], '*');
+            }
+        });
+
+        function messageHandler(message) {
+            switch(message) {
+                case 'focus':
+                    setFocus();
+                    focusHandler();
+                    Platform.postMessage(['blur'],'*');
+                    break;
+                case 'blur':
+                    blurHandler();
+                    break;
+                case 'submit':
+                    document.getElementById('paymentFormSubmit').click();
+                    break;
+                default:
+                    if ( message.action == "set_tvkey"){
+                        Platform.keymap = message.value;
+                    }
+                    break;
+            }
+        }
+
+
+        function keyDown(event) {
+            var keyCode = event.keyCode;
+            var valueToAppend = null;
+
+            Platform.log('[c] keydown ' + keyCode);
+
+            switch(keyCode) {
+                case Platform.keymap.KEY_BACK:
+                case Platform.keymap.KEY_RETURN:
+                    event.preventDefault();
+                    Platform.postMessage(['return'],'*');
+                    break;
+                case Platform.keymap.KEY_DOWN:
+                    stage.moveFocus(2);
+                    break;
+                case Platform.keymap.KEY_UP:
+                    stage.moveFocus(0);
+                    break;
+                case Platform.keymap.KEY_RIGHT:
+                    stage.moveFocus(1);
+                    break;
+                case Platform.keymap.KEY_LEFT:
+                    stage.moveFocus(3);
+                    break;
+                case Platform.keymap.KEY_ENTER:
+                    if (stage.current && !stage.current.disabled && stage.current.callback) {
+                        stage.current.callback();
+                    }
+                    break;
+                case Platform.keymap.KEY_0:
+                    valueToAppend = 0;
+                    break;
+                case Platform.keymap.KEY_1:
+                    valueToAppend = 1;
+                    break;
+                case Platform.keymap.KEY_2:
+                    valueToAppend = 2;
+                    break;
+                case Platform.keymap.KEY_3:
+                    valueToAppend = 3;
+                    break;
+                case Platform.keymap.KEY_4:
+                    valueToAppend = 4;
+                    break;
+                case Platform.keymap.KEY_5:
+                    valueToAppend = 5;
+                    break;
+                case Platform.keymap.KEY_6:
+                    valueToAppend = 6;
+                    break;
+                case Platform.keymap.KEY_7:
+                    valueToAppend = 7;
+                    break;
+                case Platform.keymap.KEY_8:
+                    valueToAppend = 8;
+                    break;
+                case Platform.keymap.KEY_9:
+                    valueToAppend = 9;
+                    break;
+                default:
+                    return true;
+            }
+
+            if (valueToAppend != null && stage.current) {
+                if ( stage.current.inputKey ) {
+                    stage.current.inputKey(valueToAppend);
+                } else if ( stage.current.numberInput ) {
+                    stage.current.numberInput.inputKey(valueToAppend);
+                }
+            }
+
+            return false;
+        }
+    })();
+    </script>
+{% endblock %}

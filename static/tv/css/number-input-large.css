@@ -1,0 +1,84 @@
+.numpad {
+	width:166px;
+	height:178px;
+	border:8px solid #333333;
+	}
+
+.numpad .numpad_row {
+	height: 43px;
+}
+
+.number_input.numpad_fixed .numpad {
+	bottom:70px;
+	left:28px;
+	}
+
+.number_input.numpad_fixed_right .numpad {
+	top:350px;
+	}
+
+	.numpad .numpad_button {
+		font-weight: bold;
+		font-size:24px;
+		line-height:44px;
+		width: 54px;
+		}
+
+		.numpad .numpad_button.button_1,
+		.numpad .numpad_button.button_4,
+		.numpad .numpad_button.button_7,
+		.numpad .numpad_button.button_backspace {
+			width: 54px;
+		}
+
+.number_input .input_place {
+    width:58px;
+    height: 57px;
+    font-size:32px;
+    line-height:60px;
+    }
+
+	.number_input .space {
+		width:15px;
+		float:left;
+		}
+
+	.number_input.small .input_place{
+		width:50px;
+        height:46px;
+		font-size:30px;
+        line-height:49px;
+		}
+
+
+.number_input .number_input_text {
+	font-size:32px;
+	height:46px;
+	line-height:50px;
+	}
+
+	.number_input .number_input_text.center_part {
+		width:140px;
+		padding:0 10px;
+		}
+
+	.number_input.wide .number_input_text.center_part {
+		width:480px;
+		}
+
+	.number_input_help {
+		line-height: 45px;
+		}
+
+.number_input_help .red_button{
+	padding:0 45px 0 15px;
+	}
+
+.number_input .cursor {
+	margin-left:-4px;
+	}
+
+.numpad .numpad_button.button_close,
+.numpad .numpad_button.button_backspace {
+    background-image: url(../i/default/number-input/buttons-lg.png);
+}

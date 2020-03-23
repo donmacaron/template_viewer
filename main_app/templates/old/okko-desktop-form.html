@@ -1,0 +1,101 @@
+{% extends "old/base/okko-desktop-base.html" %}
+{% load static %}
+
+{% block title %}{% if is_testing %}[ТЕСТ] {% endif %}Оплата покупки{% endblock %}
+
+{% block core %}
+{% if invoice_form.errors %}
+    <span class="error">{{ invoice_form.errors }}</span>
+{% else %}
+    <h2>Оплата банковской картой</h2>
+    <form class="card-form" role="form" method="post" action="{{ request.path }}">
+        {% csrf_token %}
+        <ul class="pay-form card-info clearfix">
+    {#        <li>#}
+    {#            <label><span class="label">Имя и фамилия владельца</span><input name="name" class="text-input" type="text"#}
+    {#                                                                            placeholder="IVAN IVANOV"></label>#}
+    {#            <span class="error">Обязательное поле</span>#}
+    {#        </li>#}
+            <li>
+                <label><span class="label">Номер карты</span><input
+                    name="PAN"
+                    class="text-input {% if payment_form.errors.PAN %}invalid{% endif %}"
+                    type="text"
+                    placeholder="XXXXXXXXXXXX"
+                    maxlength="22"
+                    value="{{ payment_form.PAN.value|default:'' }}"
+                    autofocus
+                ></label>
+                {% if payment_form.errors.PAN %}
+                    <span class="error">{{ payment_form.errors.PAN }}</span>
+                {% endif %}
+            </li>
+            <li>
+                <label><span class="label">Срок действия</span><input
+                    name="month"
+                    type="text"
+                    class="text-input short {% if payment_form.errors.month %}invalid{% endif %}"
+                    placeholder="ММ"
+                    maxlength="2"
+                    value="{{ payment_form.month.value|default:'' }}"
+                ></label><input
+                    name="year"
+                    type="text"
+                    class="text-input short {% if payment_form.errors.year %}invalid{% endif %}"
+                    placeholder="ГГ"
+                    maxlength="2"
+                    value="{{ payment_form.year.value|default:'' }}"
+                >
+                {% if payment_form.errors.month or payment_form.errors.year%}
+                    <span class="error">Некорректная дата.</span>
+                {% endif %}
+            </li>
+            <li>
+                <label><span class="label">
+                        СVC/CVV2
+                        <span class="help-icon"><span class="help"></span></span>
+                    </span><input
+                        name="CVV"
+                        class="text-input midi"
+                        type="text"
+                        maxlength="3"
+                        placeholder="XXX"
+                        value="{{ payment_form.CVV.value|default:'' }}"
+                    ></label>
+                {% if payment_form.errors.CVV %}
+                    <span class="error">{{ payment_form.errors.CVV }}</span>
+                {% endif %}
+            </li>
+        </ul>
+        <ul class="pay-systems">
+            <li class="active">
+                <span class="pay-logo visa"></span>
+            </li>
+            <li class="active">
+                <span class="pay-logo mastercard"></span>
+            </li>
+            <li class="active">
+                <span class="pay-logo maestro"></span>
+            </li>
+            <li class="active">
+                <span class="pay-logo diners"></span>
+            </li>
+            <li class="active">
+                <span class="pay-logo jcb"></span>
+            </li>
+        </ul>
+        {#    <ul class="pay-form clearfix">#}
+        {#        <li>#}
+        {#            <label><span class="label">Электронная почта</span><input name="email" class="text-input invalid"#}
+        {#                                                                      type="text"#}
+        {#                                                                      placeholder="mail@example.com"></label>#}
+        {#            <span class="error">Некорректное значение</span>#}
+        {#        </li>#}
+        {#    </ul>#}
+        <div class="button-holder">
+            <button type="submit" class="button">Оплатить <span class="quant">{{ invoice_form.cleaned_data.amount }}</span> {{ invoice_form.cleaned_data.currency }}.</button>
+        </div>
+    </form>
+    {{ invoice_form.as_p }}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+body, html {background: #e6e6e6; }
+
+/* разрешение экрана   */
+  .form dl {display:block; direction: ltr;}
+  .form dd {display:block;}
+  .form-label {display: block; width: 100%;}
+  .form-container {display:block;}
+  .form-container-wrap {min-height:1em;padding-bottom:26px;}
+  .form-label span {padding-right:0}
+  .form-name {display:none!important;}
+  .form-container  {padding-bottom:0;}
+  .form-label     {padding-bottom:17px;text-align:center;}
+   .form-container-wrap {
+     min-height:0;
+   }
+
+input::-webkit-input-placeholder {
+    color:    #31BDF0;
+}
+input:-moz-placeholder {
+    color:     #31BDF0;
+}
+
+.verify {
+  position:relative;top:0;height:55px;width:auto;
+}
+.verify img {float:left;}
+dd.error   .form-prim  {display:none;}
+
+
+.table-result ul {
+  display:table;padding:3px 0 5px;
+}
+
+.table-result ul,.table-result li {display:block;}
+
+.td {display:inline;color:#333;}
+.th {display:inline;font-weight:noraml;}
+

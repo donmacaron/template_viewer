@@ -1,0 +1,125 @@
+.numpad {
+	width:125px;
+	height:134px;
+	border:6px solid #333333;
+	}
+
+.numpad .numpad_row {
+	height: 31.9px;
+}
+
+.number_input.numpad_fixed .numpad {
+	bottom:52px;
+	left:21px;
+	}
+
+.number_input.numpad_fixed_right .numpad {
+	top:270px;
+	}
+
+	.numpad .numpad_button {
+		font-size:16px;
+		line-height:34px;
+		font-weight: bold;
+		width: 40px;
+		}
+
+	.numpad .numpad_button.button_1,
+	.numpad .numpad_button.button_4,
+	.numpad .numpad_button.button_7,
+	.numpad .numpad_button.button_backspace {
+		width: 40px;
+	}
+
+	.number_input .input_place {
+		width:44px;
+		font-size:24px;
+		line-height:33px;
+		padding-top:4px;
+		}
+
+	.number_input .space {
+		width:10px;
+		float:left;
+		}
+
+	.number_input.small .input_place{
+		width:37px;
+        height:35px;
+		font-size:22px;
+		line-height:37px;
+		}
+
+
+.number_input .number_input_text_wrapper {
+	width:110px;
+	}
+
+.number_input.wide .number_input_text_wrapper {
+	width:370px;
+	margin:5px auto;
+	}
+
+.number_input .number_input_text{
+	font-size:24px;
+	line-height:33px;
+	}
+
+
+	.number_input .number_input_text.center_part {
+		width:100px;
+		padding:0 10px;
+		margin:0;
+    }
+
+		 .number_input.error .number_input_text.center_part {
+			background:#FEBBBB;
+		}
+	.number_input .value {
+		position:relative;
+		top:3px;
+	}
+
+
+	.number_input.wide .number_input_text.center_part {
+		width:360px;
+		}
+
+	.number_input .number_input_text.left_part {
+		width:5px;
+		height:38px;
+		margin-right:-4px;
+		}
+
+	.number_input .number_input_text.right_part {
+		width:5px;
+		height:38px;
+		margin-left:-4px;
+		}
+
+	.number_input .number_input_text_wrapper {
+		height:38px;
+		}
+
+	.number_input_help {
+		line-height:35px;
+		}
+
+.number_input_help .erase_button {
+	padding:0 15px 0 45px;
+	min-height:17px;
+	margin-left: 15px;
+	}
+
+.number_input .cursor {
+	margin-left:-4px;
+	}
+
+		.number_input.small .input_place.last {
+			background-position:-1px 67%;
+			}
+
+
+.cards img {
+	height: 22px;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Template Checker V0.2</title>
+  </head>
+  <body>
+    <h1 class="text-center">Choose your template</h1>
+    <table class="table text-center">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Okko</th>
+          <th scope="col">Don</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for o,n in templates %}
+        <tr>
+          <td><a href="{% url 'old-template' type='old' template_name=o %}">{{ o }}</a></td>
+          <td><a href="{% url 'new-template' type='new' template_name=n %}">{{ n }}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </body>
+</html>
