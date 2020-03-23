@@ -1,6 +1,0 @@
-{% extends "old/base/okko-tv2-base.html" %}
-{% load static %}
-
-{% block scripts %}
-    <script src="{{ request.is_secure|yesno:'https,http' }}://{{ request.get_host }}{% static 'tv-okkotv/js/main-reject.js' %}" type="text/javascript"></script>
-{% endblock %}
